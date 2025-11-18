@@ -5,4 +5,4 @@ Este es el repositorio para las practicas del curso
 
 -Aviles Grimaldo Daniel
 -Zavala Lopez Carlos Eduardo
--Estrada LOpez Pablo
+-Estrada Lopez Pablo
