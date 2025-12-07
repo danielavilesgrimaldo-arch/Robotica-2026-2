@@ -1,2 +1,5 @@
 #Ignorar las carpetas de cheakpoints
 **/.ipynb_checkpoints/
+proyecto_final_ws/build/
+proyecto_final_ws/install/
+proyecto_final_ws/log/

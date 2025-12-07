@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<robot name="robot_scara">
+
+  <!-- MATERIALES GLOBALES -->
+  <material name="negro"><color rgba="0.1 0.1 0.1 1.0"/></material>
+  <material name="cyan"><color rgba="0 1 1 1.0"/></material>
+  <material name="rosa"><color rgba="1 0 1 1.0"/></material>
+  <material name="amarillo"><color rgba="1 1 0 1.0"/></material>
+  <material name="blanco"><color rgba="1 1 1 1.0"/></material>
+
+  <!-- BASE -->
+  <link name="base_link">
+    <visual>
+      <geometry><box size="0.3 0.3 0.15"/></geometry>
+      <material name="negro"/>
+    </visual>
+  </link>
+
+  <!-- JOINT 1 (Hombro) -->
+  <joint name="shoulder_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="eslabon_vertical_cyan"/>
+    <!-- Altura ajustada para tocar la base -->
+    <origin xyz="0 0 0.075" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10.0" lower="-3.14" upper="3.14" velocity="1.0"/>
+  </joint>
+
+  <link name="eslabon_vertical_cyan">
+    <visual>
+      <geometry><box size="0.04 0.04 0.45"/></geometry>
+      <origin xyz="0 0 0.225" rpy="0 0 0"/>
+      <material name="cyan"/>
+    </visual>
+  </link>
+
+  <!-- JUNTA FIJA -->
+  <joint name="junta_fija_rosa" type="fixed">
+    <parent link="eslabon_vertical_cyan"/>
+    <child link="eslabon_horizontal_rosa"/>
+    <origin xyz="0 0 0.45" rpy="0 0 0"/>
+  </joint>
+
+  <link name="eslabon_horizontal_rosa">
+    <visual>
+      <geometry><box size="0.04 0.3 0.04"/></geometry>
+      <origin xyz="0 0.15 0" rpy="0 0 0"/> 
+      <material name="rosa"/>
+    </visual>
+  </link>
+
+  <!-- JOINT 2 (Codo) -->
+  <joint name="forearm_joint" type="revolute">
+    <parent link="eslabon_horizontal_rosa"/>
+    <child link="eslabon_horizontal_amarillo"/>
+    <origin xyz="0 0.3 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10.0" lower="-2.5" upper="2.5" velocity="1.0"/>
+  </joint>
+
+  <link name="eslabon_horizontal_amarillo">
+    <visual>
+      <geometry><box size="0.3 0.04 0.04"/></geometry>
+      <origin xyz="0.15 0 0" rpy="0 0 0"/>
+      <material name="amarillo"/>
+    </visual>
+  </link>
+
+  <!-- JOINT 3 (Mano - Prismática) -->
+  <joint name="hand_joint" type="prismatic">
+    <parent link="eslabon_horizontal_amarillo"/>
+    <child link="eslabon_mano_blanco"/>
+    <origin xyz="0.3 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10.0" lower="-0.2" upper="0.1" velocity="1.0"/>
+  </joint>
+
+  <link name="eslabon_mano_blanco">
+    <visual>
+      <geometry><cylinder radius="0.015" length="0.3"/></geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <material name="blanco"/>
+    </visual>
+  </link>
+
+</robot>
