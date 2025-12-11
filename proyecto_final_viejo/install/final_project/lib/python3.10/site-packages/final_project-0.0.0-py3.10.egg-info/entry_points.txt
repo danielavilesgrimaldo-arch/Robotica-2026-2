@@ -1,0 +1,6 @@
+[console_scripts]
+custom_manager = final_project.scripts.custom_manager:main
+hardware_interface = final_project.scripts.hardware_interface:main
+manipulator_controller = final_project.scripts.manipulator_controller:main
+scara_controller = final_project.scripts.scara_controller:main
+
